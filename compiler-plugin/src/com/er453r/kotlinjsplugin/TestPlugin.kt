@@ -1,4 +1,4 @@
-package com.er453r.plugin
+package com.er453r.kotlinjsplugin
 
 import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector
