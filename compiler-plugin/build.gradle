@@ -1,5 +1,5 @@
 group = "com.er453r.kotlinjsplugin"
-version = "0.0.1"
+version = "0.0.6"
 
 apply plugin: "kotlin"
 apply plugin: "maven-publish"
@@ -16,7 +16,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.er453r'
             artifactId = 'kotlinjsplugin'
-            version = '0.0.1'
+            version = '0.0.6'
 
             from components.java
         }
@@ -34,3 +34,5 @@ sourceSets {
         }
     }
 }
+
+build.finalizedBy publishToMavenLocal
