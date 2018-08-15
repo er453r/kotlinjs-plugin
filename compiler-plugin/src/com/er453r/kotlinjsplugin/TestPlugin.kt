@@ -10,6 +10,7 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 class TestComponentRegistrar : ComponentRegistrar {
 
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
+        println("TestComponentRegistrar loaded for plugin ${TestProcessor.PLUGIN_ID}")
 
         // see https://github.com/JetBrains/kotlin/blob/1.1.2/plugins/annotation-collector/src/org/jetbrains/kotlin/annotation/AnnotationCollectorPlugin.kt#L92
         val messageCollector = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)

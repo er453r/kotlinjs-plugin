@@ -16,6 +16,8 @@ class TestExtension(val messageCollector: MessageCollector) : ClassBuilderInterc
             bindingContext: BindingContext,
             diagnostics: DiagnosticSink
     ): ClassBuilderFactory {
+        println("TestExtension loaded for plugin ${TestProcessor.PLUGIN_ID}")
+
         messageCollector.report(WARNING, "WORKS", CompilerMessageLocation.create("Lol CODE"))
 
         return interceptedFactory
