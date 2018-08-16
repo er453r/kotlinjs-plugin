@@ -25,7 +25,8 @@ class TestSubplugin : KotlinGradleSubplugin<AbstractCompile> {
 
     override fun getPluginArtifact() = SubpluginArtifact(
             groupId = "com.er453r",
-            artifactId = TestProcessor.PLUGIN_ID
+            artifactId = TestProcessor.PLUGIN_ID,
+            version = "0.0.8"
     )
 
     override fun isApplicable(project: Project, task: AbstractCompile) = true
