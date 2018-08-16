@@ -1,1 +1,1 @@
-include "app", "compiler-plugin"
+include "app"
