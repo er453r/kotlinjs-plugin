@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.codegen.extensions.ExpressionCodegenExtension
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
 import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.js.translate.extensions.JsSyntheticTranslateExtension
 
 class TestComponentRegistrar : ComponentRegistrar {
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
@@ -15,6 +16,7 @@ class TestComponentRegistrar : ComponentRegistrar {
 
         messageCollector.log("TestComponentRegistrar loaded for plugin ${TestSubplugin.ID}")
 
+        JsSyntheticTranslateExtension.registerExtension(project, JsCodeGen(messageCollector))
         ClassBuilderInterceptorExtension.registerExtension(project, TestExtension(messageCollector))
         ExpressionCodegenExtension.registerExtension(project, CodeGen(messageCollector))
     }
