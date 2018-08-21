@@ -9,6 +9,9 @@ import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
 
 class TestComponentRegistrar : ComponentRegistrar {
+    companion object {
+        const val ID = "kotlinjsplugin"
+    }
 
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
         println("TestComponentRegistrar loaded for plugin ${TestProcessor.PLUGIN_ID}")

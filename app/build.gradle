@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.er453r:kotlinjsplugin:0.0.19"
+        classpath "com.er453r:kotlinjsplugin:0.0.1"
     }
 }
 
