@@ -1,5 +1,6 @@
 apply plugin: "kotlin"
 apply plugin: "kotlinjsplugin"
+apply plugin: 'application'
 
 buildscript {
     repositories{
@@ -8,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.er453r:kotlinjsplugin:0.0.9"
+        classpath "com.er453r:kotlinjsplugin:0.0.19"
     }
 }
 
@@ -25,6 +26,9 @@ sourceSets {
     }
 }
 
+mainClassName = 'com.er453r.plugintest.TestClassKt'
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
