@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class TestGradleSubplugin @Inject internal constructor(private val registry: ToolingModelBuilderRegistry) : Plugin<Project> {
     override fun apply(p0: Project?) {
-        println("TestSubplugin apply ${TestProcessor.PLUGIN_ID}")
+        println("[${TestSubplugin.ID}] Gradle plugin apply")
     }
 }
