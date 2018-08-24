@@ -21,9 +21,7 @@ buildscript {
 
 dependencies {
     compile gradleApi()
-    compile "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlin_version"
+    compile 'com.squareup:kotlinpoet:1.0.0-RC1'
 }
 
 publishing {

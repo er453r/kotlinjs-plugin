@@ -22,6 +22,7 @@ apply plugin: "kotlinjsplugin"
 
 sourceSets {
     main.kotlin.srcDirs += "src"
+    main.kotlin.srcDirs += "generated"
 }
 
 compileKotlin2Js {
