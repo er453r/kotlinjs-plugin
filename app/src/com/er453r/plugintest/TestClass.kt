@@ -1,6 +1,6 @@
 package com.er453r.plugintest
 
-import com.er453r.sythetic.*
+import com.er453r.plugin.generated.derp
 
 class TestClass {
     companion object {
@@ -10,6 +10,6 @@ class TestClass {
     private val privateVar:String = "PrivateSTUFF"
 
     init {
-        println("derp constructed ${TestClass::class} $html $privateVar myVar")
+        println("derp constructed ${TestClass::class} $html $privateVar $derp")
     }
 }
