@@ -11,13 +11,15 @@ import org.jetbrains.kotlin.js.translate.extensions.JsSyntheticTranslateExtensio
 
 class TestComponentRegistrar : ComponentRegistrar {
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
+        println("derpos")
+
         // see https://github.com/JetBrains/kotlin/blob/1.1.2/plugins/annotation-collector/src/org/jetbrains/kotlin/annotation/AnnotationCollectorPlugin.kt#L92
         val messageCollector = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
 
         messageCollector.log("TestComponentRegistrar loaded for plugin ${TestSubplugin.ID}")
 
-        JsSyntheticTranslateExtension.registerExtension(project, JsCodeGen(messageCollector))
         ClassBuilderInterceptorExtension.registerExtension(project, TestExtension(messageCollector))
         ExpressionCodegenExtension.registerExtension(project, CodeGen(messageCollector))
+        JsSyntheticTranslateExtension.registerExtension(project, JsCodeGen(messageCollector))
     }
 }

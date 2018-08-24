@@ -12,7 +12,7 @@ class TestExtension(private val messageCollector: MessageCollector) : ClassBuild
             bindingContext: BindingContext,
             diagnostics: DiagnosticSink
     ): ClassBuilderFactory {
-        messageCollector.log("TestExtension loaded for plugin ${TestSubplugin.ID}")
+        messageCollector.log("CLASS BUILDER TestExtension loaded for plugin ${TestSubplugin.ID}")
 
         return interceptedFactory
     }

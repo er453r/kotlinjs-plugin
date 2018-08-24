@@ -4,4 +4,6 @@
 gradlew*
 gradle
 *.iml
+dist
+app/dist
 
