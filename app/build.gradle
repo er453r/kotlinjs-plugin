@@ -1,34 +1,69 @@
-apply plugin: "kotlin"
-apply plugin: "kotlinjsplugin"
-apply plugin: 'application'
+group = "com.er453r.kotlinjstest"
+version = "0.0.1"
 
 buildscript {
-    repositories{
+    ext{
+        kotlin_version = "1.2.60"
+        main = "app"
+        distDir = "dist"
+    }
+    repositories {
         mavenLocal()
         mavenCentral()
     }
-
     dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.er453r:kotlinjsplugin:0.0.1"
     }
 }
 
-repositories{
+apply plugin: "kotlin2js"
+apply plugin: "kotlinjsplugin"
+
+sourceSets {
+    main.kotlin.srcDirs += "src"
+}
+
+compileKotlin2Js {
+    kotlinOptions{
+        outputFile = "${distDir}/js/${main}.js"
+        sourceMap = true
+    }
+}
+
+repositories {
     mavenLocal()
     mavenCentral()
 }
 
-sourceSets {
-    main {
-        kotlin {
-            srcDirs "src"
-        }
-    }
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
 
-mainClassName = 'com.er453r.plugintest.TestClassKt'
+clean.doFirst() {
+    delete("${distDir}")
+}
 
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+build.doLast() {
+    // Copy kotlin.js and kotlin-meta.js from jar into web directory
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+
+            from zipTree(file.absolutePath)
+            into "${distDir}/js"
+            include { fileTreeElement ->
+                fileTreeElement.path.endsWith(".js") && !fileTreeElement.path.endsWith("meta.js")
+            }
+        }
+    }
+
+    copy {
+        includeEmptyDirs = false
+        from new File("res")
+        into "${distDir}"
+    }
+
+    delete("${distDir}/js/${main}")
+    delete("${distDir}/js/${main}.meta.js")
 }
