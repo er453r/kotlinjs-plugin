@@ -1,5 +1,6 @@
 package com.er453r.kotlinjsplugin
 
+import com.squareup.kotlinpoet.*
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.tooling.provider.model.ToolingModelBuilderRegistry
@@ -33,14 +34,35 @@ class TestGradleSubplugin @Inject internal constructor(private val registry: Too
                             val (className) = classMatchResult.destructured
                             println("class $className")
 
+                            val greeterClass = ClassName("", "Greeter")
 
+                            val file = FileSpec.builder("", "HelloWorld")
+                                    .addType(TypeSpec.classBuilder("Greeter")
+                                            .primaryConstructor(FunSpec.constructorBuilder()
+                                                    .addParameter("name", String::class)
+                                                    .build())
+                                            .addProperty(PropertySpec.builder("name", String::class)
+                                                    .initializer("name")
+                                                    .build())
+                                            .addFunction(FunSpec.builder("greet")
+                                                    .addStatement("println(%S)", "Hello, \$name")
+                                                    .build())
+                                            .build())
+                                    .addFunction(FunSpec.builder("main")
+                                            .addParameter("args", String::class, KModifier.VARARG)
+                                            .addStatement("%T(args[0]).greet()", greeterClass)
+                                            .build())
+                                    .build()
+
+                            file.writeTo(System.out)
 
                             result = result.next()
                         }
                     }
                 }
 
-                File("${project.projectDir}/generated/Extensions.kt").mkdirs()
+                File("${project.projectDir}/generated").mkdirs()
+                File("${project.projectDir}/generated/Extensions.kt").createNewFile()
             }
         }
     }
